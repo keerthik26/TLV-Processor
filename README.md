@@ -24,6 +24,7 @@ Coding requirements
 Sample Test Cases
 This is one of test case suite that will be used for evaluation. Please test your code against these
 before submitting. All test cases MUST pass before the code can be accepted.
+
 The test is run as follow:
 java -jar tlvprocessor.jar < input
 Note: The input is still from STDIN.
@@ -31,7 +32,9 @@ Note: The input is still from STDIN.
 Input:
 UPPRCS-0005-abcde
 REPLCE-0003-123
-UPPRCS-0008-AbcdefghREPLCE-0003-123REPLCE-0001-Z
+UPPRCS-0008-Abcdefgh
+REPLCE-0003-123
+REPLCE-0001-Z
 TAG001-0012-abcdefgh1234
 UPPRCS-0004-1234
 
