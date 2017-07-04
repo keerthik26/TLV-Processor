@@ -1,24 +1,24 @@
 # TLV-Processor
 Process TLVs with the following format 
- Format: TYPE(6)-LENGTH(4)-VALUE 
- Type - fixed 6 chars length. Defines the type of processing required. 
- Length - fixed 4 chars (represented as text) length of the value. 
- Value - the actual data to be processed of length 'Length' above
+- Format: TYPE(6)-LENGTH(4)-VALUE 
+- Type - fixed 6 chars length. Defines the type of processing required. 
+- Length - fixed 4 chars (represented as text) length of the value. 
+- Value - the actual data to be processed of length 'Length' above
 
 Processing requirements
- For Type UPPRCS: convert the value to uppercase, if already uppercase do nothing.
- For Type REPLCE: replace the value with fixed string "THIS STRING"
- For any other type indicate an error “Type not valid” and continue processing.
- Output should be printed as the TLVs are processed.
- Input is specified on StdIn and output is expected on StdOut.
- Assume all data is in ascii.
- Assume all data will always follow the format specified, i.e. no malformed TLVs.
+- For Type UPPRCS: convert the value to uppercase, if already uppercase do nothing.
+- For Type REPLCE: replace the value with fixed string "THIS STRING"
+- For any other type indicate an error “Type not valid” and continue processing.
+- Output should be printed as the TLVs are processed.
+- Input is specified on StdIn and output is expected on StdOut.
+- Assume all data is in ascii.
+- Assume all data will always follow the format specified, i.e. no malformed TLVs.
 
 Coding requirements
- Create a jar file name tlvprocessor.jar with all the dependencies used in the project.
- Design for extensibility, which will help to easily add
-o New input-output types like network streams
-o New processors like LOWRCS
+- Create a jar file name tlvprocessor.jar with all the dependencies used in the project.
+- Design for extensibility, which will help to easily add
+- New input-output types like network streams
+- New processors like LOWRCS
 
 
 Sample Test Cases
