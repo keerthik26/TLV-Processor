@@ -2,6 +2,8 @@ package com.tlv;
 
 
 
+import java.util.Scanner;
+
 import com.tlv.common.ProcessorType;
 import com.tlv.common.Validator;
 import com.tlv.exceptions.TLVException;
@@ -14,12 +16,16 @@ import com.tlv.vo.Valid;
 public class TLVProcessor {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
 		//String input ="UPPRCS-0005-abcde";
-		String input = "REPLCE-0003-123";
+		//String input = "REPLCE-0003-123";
 		//String input = "UPPRCS-0004-1234";
 		
+		Scanner scanner = new Scanner(System.in);
+		String input = "";
+				
+		while(scanner.hasNextLine()){
+			input = scanner.nextLine();
 		Validator validator = new Validator();
 		
 			try {
@@ -33,8 +39,8 @@ public class TLVProcessor {
 			} catch (TLVException e) {
 				System.out.println(e.getMessage());
 			}
-		
-		
+			
+		}
 		
 		
 	}
