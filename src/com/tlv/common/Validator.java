@@ -1,25 +1,21 @@
 package com.tlv.common;
 
+import com.tlv.exceptions.ExceptionType;
+import com.tlv.exceptions.TLVException;
 import com.tlv.vo.Request;
 import com.tlv.vo.Valid;
 
 public class Validator {
 
-	public Valid validateRequest(String input){
-		Valid validStatus = new Valid();
+	public boolean validateRequest(String input) throws TLVException{
+		//Valid validStatus = new Valid();
+		boolean validStatus=false;
 		String[] requestArray = input.split("-");
 		
 		if(requestArray.length == 3){
-			validStatus = validateType(requestArray[0]);
-			if(validStatus.isValid()){
-				validStatus = validateLength(requestArray[1]);
-				if(validStatus.isValid()){
-					validStatus = validateValue(requestArray[2]);
-				}
-			}
+			validStatus = (validateType(requestArray[0]) && validateLength(requestArray[1]) && validateValue(requestArray[2]));
 		}else{
-			validStatus.setValid(false);
-			validStatus.setInvalidReason("Invalid format");
+			throw new TLVException(ExceptionType.INVALID_FORMAT);
 		}
 		return validStatus;
 		
@@ -37,50 +33,45 @@ public class Validator {
 		
 	}
 
-	private Valid validateType(String type) {
-		Valid valid = new Valid();
-		valid.setValid(true);;
+	private boolean validateType(String type) throws TLVException {
+		boolean isValid=false;
 		if(type.length() != 6){
-			valid.setValid(false);
-			valid.setInvalidReason("Invalid Format: TYPE is not of 6 chars");
-			return valid;
+			throw new TLVException(ExceptionType.INVALID_TYPE_FORMAT);
 		}	
 		try{
 			ProcessorType.valueOf(type);
 		}catch (Exception e){
-			valid.setValid(false);
-			valid.setInvalidReason("Type not valid");
+			throw new TLVException(ExceptionType.INVALID_TYPE, e);
 		}
-					
-		return valid;
+			
+		isValid=true;
+		return isValid;
 	}
 
-	private Valid validateLength(String leng) {
-		Valid valid = new Valid();
-		valid.setValid(true);;
+	private boolean validateLength(String leng) throws TLVException {
+		boolean isValid=false;
+		
 		if(leng.length() != 4){
-			valid.setValid(false);
-			valid.setInvalidReason("Invalid Format: LENGTH is not of 4 chars");
-			return valid;
+			throw new TLVException(ExceptionType.INVALID_LENGTH_FORMAT);
 		}
 		
 		try{
 			Integer.parseInt(leng);
 		}catch (Exception e){
-			valid.setValid(false);
-			valid.setInvalidReason("LENGTH not valid");
+			throw new TLVException(ExceptionType.INVALID_LENGTH, e);
 		}
-		return valid;
+		
+		isValid=true;
+		return isValid;
 	}
 
-	private Valid validateValue(String value) {
-		Valid valid = new Valid();
-		valid.setValid(true);;
+	private boolean validateValue(String value) throws TLVException {
+		boolean isValid=false;
 		if(value.length() == 0){
-			valid.setValid(false);
-			valid.setInvalidReason("VALUE not valid");
+			throw new TLVException(ExceptionType.INVALID_VALUE);
 		}
-		return valid;
+		isValid=true;
+		return isValid;
 	}
 	
 }
