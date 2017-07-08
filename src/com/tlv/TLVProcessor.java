@@ -2,6 +2,10 @@ package com.tlv;
 
 
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 import com.tlv.common.ProcessorType;
@@ -21,11 +25,19 @@ public class TLVProcessor {
 		//String input = "REPLCE-0003-123";
 		//String input = "UPPRCS-0004-1234";
 		
-		Scanner scanner = new Scanner(System.in);
-		String input = "";
+		
+		//Scanner scanner = new Scanner(System.in);
+		InputStream ipStream = System.in;
+		InputStreamReader ipStreamReader = new  InputStreamReader(ipStream);
+		BufferedReader in = new BufferedReader(ipStreamReader);
+		
+		String input;
+		
+		try {
+			
+		input = in.readLine();
 				
-		while(scanner.hasNextLine()){
-			input = scanner.nextLine();
+		while(input != null && !input.equals("")){
 		Validator validator = new Validator();
 		
 			try {
@@ -39,10 +51,18 @@ public class TLVProcessor {
 			} catch (TLVException e) {
 				System.out.println(e.getMessage());
 			}
-			
+			input = in.readLine();
 		}
 		
-		
+		} catch (IOException e1) {
+			System.out.println("Exception occurred while reading input : " + e1.getMessage());
+		} finally {
+			try {
+				in.close();
+			} catch (IOException e) {
+				System.out.println("Couldn't close the buffered reader");
+			}
+		}
 	}
 
 }
