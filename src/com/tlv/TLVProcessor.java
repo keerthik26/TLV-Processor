@@ -6,16 +6,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Scanner;
 
-import com.tlv.common.ProcessorType;
 import com.tlv.common.Validator;
 import com.tlv.exceptions.TLVException;
-import com.tlv.processor.Processor;
-import com.tlv.processor.ProcessorFactory;
+import com.tlv.processor.ProcessorContext;
 import com.tlv.vo.Request;
 import com.tlv.vo.Response;
-import com.tlv.vo.Valid;
 
 public class TLVProcessor {
 
@@ -30,7 +26,7 @@ public class TLVProcessor {
 		InputStream ipStream = System.in;
 		InputStreamReader ipStreamReader = new  InputStreamReader(ipStream);
 		BufferedReader in = new BufferedReader(ipStreamReader);
-		
+		ProcessorContext processor = new ProcessorContext();
 		String input;
 		
 		try {
@@ -43,9 +39,9 @@ public class TLVProcessor {
 			try {
 				if(validator.validateRequest(input)){
 					Request req = validator.createRequest(input);
-					ProcessorType type = ProcessorType.valueOf(req.getType());
-					Processor processor = ProcessorFactory.getProcessor(type);
-					Response resp = processor.process(req);
+					/*ProcessorType type = ProcessorType.valueOf(req.getType());
+					ProcessStrategy processor = ProcessorContext.getProcessor(type);*/
+					Response resp = processor.processInput(req);
 					System.out.println(resp.getType() + "-" + resp.getValue());
 				}
 			} catch (TLVException e) {
