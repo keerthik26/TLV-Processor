@@ -3,7 +3,6 @@ package com.tlv.common;
 import com.tlv.exceptions.ExceptionType;
 import com.tlv.exceptions.TLVException;
 import com.tlv.vo.Request;
-import com.tlv.vo.Valid;
 
 public class Validator {
 
