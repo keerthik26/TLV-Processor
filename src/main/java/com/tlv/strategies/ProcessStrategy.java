@@ -1,4 +1,4 @@
-package com.tlv.processor;
+package com.tlv.strategies;
 
 import com.tlv.vo.Request;
 import com.tlv.vo.Response;

@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 
 import com.tlv.common.Validator;
 import com.tlv.exceptions.TLVException;
-import com.tlv.processor.ProcessorContext;
+import com.tlv.strategies.ProcessorContext;
 import com.tlv.vo.Request;
 import com.tlv.vo.Response;
 
@@ -42,7 +42,7 @@ public class TLVProcessor {
 					/*ProcessorType type = ProcessorType.valueOf(req.getType());
 					ProcessStrategy processor = ProcessorContext.getProcessor(type);*/
 					Response resp = processor.processInput(req);
-					System.out.println(resp.getType() + "-" + resp.getValue());
+					//System.out.println(resp.getType() + "-" + resp.getValue());
 				}
 			} catch (TLVException e) {
 				System.out.println(e.getMessage());
