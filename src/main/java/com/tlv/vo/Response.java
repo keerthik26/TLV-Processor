@@ -1,6 +1,6 @@
 package com.tlv.vo;
 
-import com.tlv.common.ProcessorType;
+import com.tlv.vo.enums.ProcessorType;
 
 public class Response {
 	
@@ -28,7 +28,14 @@ public class Response {
 	}
 	
 	
-	
+	@Override
+	public String toString() {
+		if(isValid()){
+			return type.toString() + "-" + content;
+		}else{
+			return content;
+		}
+	}
 	
 	
 }

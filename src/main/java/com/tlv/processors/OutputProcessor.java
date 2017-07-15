@@ -17,10 +17,10 @@ public class OutputProcessor {
 	public void writeOutput(List<Response> responses){
 		
 		try {
-			opStream.write(null);
+			for(Response resp : responses){
+			opStream.write((resp.toString() + "\n" ).getBytes());
+			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 }

@@ -6,4 +6,5 @@ import com.tlv.vo.Response;
 public interface ProcessStrategy {
 
 	Response process(Request request);
+	
 }

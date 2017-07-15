@@ -1,6 +1,6 @@
 package com.tlv.vo;
 
-import com.tlv.common.ProcessorType;
+import com.tlv.vo.enums.ProcessorType;
 
 public class Request {
 
@@ -9,7 +9,7 @@ public class Request {
 	private ProcessorType type;
 	private int length;
 	private String value;
-	
+	private boolean isValid = true;
 	
 	public String getTypeStr() {
 		return typeStr;
@@ -40,6 +40,16 @@ public class Request {
 	}
 	public void setValue(String value) {
 		this.value = value;
+	}
+	public boolean isValid() {
+		return isValid;
+	}
+	public void setValid(boolean isValid) {
+		this.isValid = isValid;
+	}
+	@Override
+	public String toString() {
+		return "Request [type=" + type + ", length=" + length + ", value=" + value + "]";
 	}
 	
 	

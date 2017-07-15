@@ -10,7 +10,7 @@ public class UpperCaseStrategy implements ProcessStrategy {
 		Response resp = new Response();
 		resp.setType(request.getType());
 		String result = request.getValue().substring(0, request.getLength()).toUpperCase();
-		//resp.setValue(result);
+		resp.setContent(result);
 		return resp;
 	}
 
