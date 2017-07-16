@@ -7,46 +7,33 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.tlv.exceptions.TLVException;
+import com.tlv.exceptions.TLVRunTimeException;
 import com.tlv.vo.Request;
 
 public class InputProcessor {
 	
 	private InputStream ipStream;
+	private BufferedReader br ;
 	
 	public InputProcessor(InputStream ipStream) {
 		this.ipStream = ipStream;
+		br = getReader();
 	}
 	
-	public List<Request> readInput(){
-		List<Request> inMessages = new ArrayList<Request>();
-    	InputStreamReader ipReader = new InputStreamReader(ipStream);
-    	BufferedReader br = new BufferedReader(ipReader);
-    	String input ;
-    			 
+	public BufferedReader getReader(){
+		BufferedReader br = new BufferedReader(new InputStreamReader(ipStream));
+		return br;
+	}
+	
+	public String readInput() throws TLVException{
+    			 	
 		try {
-			while((input= br.readLine()) != null && !input.equals("")){
-					 inMessages.add(createRequestMessage(input));
-			}
+			return br.readLine();
 		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		return inMessages;	
+			throw new TLVException("Exception while reading messages");
+		}	
 	}
 	
-	private Request createRequestMessage(String input){		
-		Request request = new Request();
-		
-		String[] requestArray = input.split("-");
-		if(requestArray.length == 3){ 
-			request.setTypeStr(requestArray[0]);
-			request.setLengStr(requestArray[1]);
-			request.setValue(requestArray[2]);
-		}else{
-			request.setValid(false);
-		}
-		return request;
-		
-	}
 
 }
