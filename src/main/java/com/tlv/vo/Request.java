@@ -20,7 +20,7 @@ public class Request {
 		if(type == null){
 			throw new TLVException(Constants.INVALID_TYPE);
 		}
-		if(value.length() <= length){
+		if(value.length() < length){
 			throw new TLVException(Constants.INVALID_VALUE_LENGTH);
 		}
 		return new Request(type, length, value);
