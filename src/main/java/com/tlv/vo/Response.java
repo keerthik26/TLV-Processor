@@ -4,37 +4,45 @@ import com.tlv.vo.enums.ProcessorType;
 
 public class Response {
 	
-	private boolean isValid;
-	private ProcessorType type;
-	private String content;
+	private final String value;
 	
-	public boolean isValid() {
-		return isValid;
-	}
-	public void setValid(boolean isValid) {
-		this.isValid = isValid;
-	}
-	public ProcessorType getType() {
-		return type;
-	}
-	public void setType(ProcessorType type) {
-		this.type = type;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
+	public Response(String value) {
+		this.value = value;
 	}
 	
-	
+	public static Response build(ProcessorType type, String value){
+		return new Response(type.toString() + "-" + value);
+	}
+
+	public String getValue() {
+		return value;
+	}
+
 	@Override
 	public String toString() {
-		if(isValid()){
-			return type.toString() + "-" + content;
-		}else{
-			return content;
+		return "Response [value=" + value + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((value == null) ? 0 : value.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
 		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+
+		Response response = (Response) o;
+
+		return value != null ? value.equals(response.value) : response.value == null;
 	}
 	
 	
