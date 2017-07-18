@@ -21,7 +21,7 @@ public class InputProcessor {
 		br = getReader();
 	}
 	
-	public BufferedReader getReader(){
+	private BufferedReader getReader(){
 		BufferedReader br = new BufferedReader(new InputStreamReader(ipStream));
 		return br;
 	}
