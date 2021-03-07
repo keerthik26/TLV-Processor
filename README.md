@@ -27,6 +27,7 @@ before submitting. All test cases MUST pass before the code can be accepted.
 
 The test is run as follow:
 java -jar tlvprocessor.jar < input
+
 Note: The input is still from STDIN.
 
 Input:
